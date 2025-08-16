@@ -25,6 +25,48 @@
             padding: 2rem;
         }
 
+        /* Sous-titres pour les sections extrascolaires */
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f5f5f5;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3b82f6;
+            position: relative;
+            text-align: center;
+        }
+
+        .category-title:first-of-type {
+            margin-top: 1rem;
+        }
+
+        .category-title::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -2px;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .category-description {
+            text-align: center;
+            color: #a3a3a3;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Responsive pour les titres */
+        @media (max-width: 768px) {
+            .category-title {
+                font-size: 1.5rem;
+            }
+        }
+
         header {
             text-align: center;
             margin-bottom: 3rem;
@@ -503,45 +545,13 @@
 
         <!-- Section Extra-scolaire -->
         <div id="extrascolaire" class="section active">
+            <!-- Section Mathématiques -->
+            <h2 class="category-title">🔢 Mathématiques</h2>
+            <p class="category-description">Compétitions, formations et reconnaissances en mathématiques</p>
+            
             <div class="extrascolaire-container">
                 <div class="certificat-card">
-                    <h2 class="certificat-title">CS50 (x)</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> Harvard</p>
-                        <p><strong>Date :</strong> Août 2024</p>
-                    </div>
-                    <p class="certificat-description">Formation complétée en C, Python, SQL, HTML/CSS/JS/Jinja, et frameworks modernes. Projet final incluant une calcultatrice (graphique et autonome).</p>
-                    <div class="profile-section">
-                        <a href="certificats/CS50x.pdf" class="certificat-link">Voir le certificat</a>
-                    </div>
-                </div>
-
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Cours physique magnétique, nucléaire</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> CERN</p>
-                        <p><strong>Date :</strong> Juin 2025</p>
-                    </div>
-                    <p class="certificat-description">Formation complétée en physique, score parfait aux tests.</p>
-                    <div class="profile-section">
-                        <a href="certificats/cern.pdf" class="certificat-link">Voir le certificat</a>
-                    </div>
-                </div>
-
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Antimatière</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> CERN, Solvay</p>
-                        <p><strong>Date :</strong> Août 2025</p>
-                    </div>
-                    <p class="certificat-description">Séléctionné pour visiter une usine d'antimatière et assister à une conférence, en ligne.</p>
-                    <div class="profile-section">
-                        <a href="#" class="certificat-link">Voir le certificat</a>
-                    </div>
-                </div>
-
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Olympiades Nationale de Mathématiques</h2>
+                    <h2 class="certificat-title">Olympiades Nationales de Mathématiques</h2>
                     <div class="certificat-info">
                         <p><strong>Délivré par :</strong> Education nationale</p>
                         <p><strong>Date :</strong> Mars 2025</p>
@@ -599,6 +609,24 @@
                         <a href="https://www.mathraining.be/users/29415" class="certificat-link">Voir le profil</a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Section Informatique -->
+            <h2 class="category-title">💻 Informatique & Programmation</h2>
+            <p class="category-description">Formations techniques et plateformes de développement</p>
+            
+            <div class="extrascolaire-container">
+                <div class="certificat-card">
+                    <h2 class="certificat-title">CS50 (x)</h2>
+                    <div class="certificat-info">
+                        <p><strong>Délivré par :</strong> Harvard</p>
+                        <p><strong>Date :</strong> Août 2024</p>
+                    </div>
+                    <p class="certificat-description">Formation complétée en C, Python, SQL, HTML/CSS/JS/Jinja, et frameworks modernes. Projet final incluant une calculatrice (graphique et autonome).</p>
+                    <div class="profile-section">
+                        <a href="certificats/CS50x.pdf" class="certificat-link">Voir le certificat</a>
+                    </div>
+                </div>
 
                 <div class="certificat-card">
                     <h2 class="certificat-title">France IOI</h2>
@@ -611,21 +639,57 @@
                         <a href="https://www.france-ioi.org/user/perso.php?sLogin=patator" class="certificat-link">Voir le profil</a>
                     </div>
                 </div>
-                
+            </div>
+
+            <!-- Section Physique -->
+            <h2 class="category-title">⚛️ Physique</h2>
+            <p class="category-description">Formations et expériences en physique fondamentale</p>
+            
+            <div class="extrascolaire-container">
+                <div class="certificat-card">
+                    <h2 class="certificat-title">Cours physique magnétique, nucléaire</h2>
+                    <div class="certificat-info">
+                        <p><strong>Délivré par :</strong> CERN</p>
+                        <p><strong>Date :</strong> Juin 2025</p>
+                    </div>
+                    <p class="certificat-description">Formation complétée en physique, score parfait aux tests.</p>
+                    <div class="profile-section">
+                        <a href="certificats/cern.pdf" class="certificat-link">Voir le certificat</a>
+                    </div>
+                </div>
+
+                <div class="certificat-card">
+                    <h2 class="certificat-title">Antimatière</h2>
+                    <div class="certificat-info">
+                        <p><strong>Délivré par :</strong> CERN, Solvay</p>
+                        <p><strong>Date :</strong> Août 2025</p>
+                    </div>
+                    <p class="certificat-description">Sélectionné pour visiter une usine d'antimatière et assister à une conférence, en ligne.</p>
+                    <div class="profile-section">
+                        <a href="#" class="certificat-link">Voir le certificat</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Humanités -->
+            <h2 class="category-title">🎭 Humanités & Communication</h2>
+            <p class="category-description">Compétitions et formations en histoire, éloquence et communication</p>
+            
+            <div class="extrascolaire-container">
                 <div class="certificat-card">
                     <h2 class="certificat-title">Olympiades Internationales d'Histoire</h2>
                     <div class="certificat-info">
                         <p><strong>Délivré par :</strong> International Academic Competitions</p>
                         <p><strong>Date :</strong> Mai 2025</p>
                     </div>
-                    <p class="certificat-description">Score de 96/100 au test de séléction. Junior Varsity. Absent aux Olympiades car en voyage.</p>
+                    <p class="certificat-description">Score de 96/100 au test de sélection. Junior Varsity. Absent aux Olympiades car en voyage.</p>
                     <div class="profile-section">
                         <a href="certificats/His.pdf" class="certificat-link">Voir le certificat</a>
                     </div>
                 </div>
 
                 <div class="certificat-card">
-                    <h2 class="certificat-title">Concours National d'Eloquence</h2>
+                    <h2 class="certificat-title">Concours National d'Éloquence</h2>
                     <div class="certificat-info">
                         <p><strong>Délivré par :</strong> Atelier de la Langue Française</p>
                         <p><strong>Date :</strong> Janvier 2025</p>
