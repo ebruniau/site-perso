@@ -851,27 +851,19 @@
         const totalCategories = 4;
 
         function showCategory(index) {
-            const container = document.getElementById('carouselContainer');
-            const translateX = -index * 20; // 20% per panel
-            container.style.transform = `translateX(${translateX}%)`;
+            // Masquer tous les panneaux
+            document.querySelectorAll('.category-panel').forEach(panel => {
+                panel.style.display = 'none';
+            });
             
-            // Update navigation - nouvelle barre iOS
+            // Afficher le panneau sélectionné
+            document.getElementById(`category-${index}`).style.display = 'flex';
+            
+            // Mettre à jour la navigation
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
             document.querySelectorAll('.nav-item')[index].classList.add('active');
-            
-            // Update panel states for blur effect
-            document.querySelectorAll('.category-panel').forEach((panel, i) => {
-                panel.classList.remove('active', 'prev', 'next');
-                if (i === index) {
-                    panel.classList.add('active');
-                } else if (i === index - 1 || (index === 0 && i === totalCategories - 1)) {
-                    panel.classList.add('prev');
-                } else if (i === index + 1 || (index === totalCategories - 1 && i === 0)) {
-                    panel.classList.add('next');
-                }
-            });
             
             currentCategory = index;
         }
