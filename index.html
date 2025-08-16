@@ -520,6 +520,56 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Navigation carousel - nouvelle barre iOS style */
+        .carousel-navigation {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .carousel-nav-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px;
+            gap: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .nav-item.active {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-item:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -646,11 +696,25 @@
                     </div>
                 </div>
 
-                <div class="carousel-nav">
-                    <div class="carousel-dot active" onclick="showCategory(0)"></div>
-                    <div class="carousel-dot" onclick="showCategory(1)"></div>
-                    <div class="carousel-dot" onclick="showCategory(2)"></div>
-                    <div class="carousel-dot" onclick="showCategory(3)"></div>
+                <div class="carousel-navigation">
+                    <div class="carousel-nav-bar glass-panel">
+                        <button class="nav-item active" onclick="showCategory(0)">
+                            <span class="nav-icon">🔢</span>
+                            <span>Mathématiques</span>
+                        </button>
+                        <button class="nav-item" onclick="showCategory(1)">
+                            <span class="nav-icon">💻</span>
+                            <span>Informatique</span>
+                        </button>
+                        <button class="nav-item" onclick="showCategory(2)">
+                            <span class="nav-icon">⚛️</span>
+                            <span>Physique</span>
+                        </button>
+                        <button class="nav-item" onclick="showCategory(3)">
+                            <span class="nav-icon">🎭</span>
+                            <span>Humanités</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -787,24 +851,30 @@
         const totalCategories = 4;
 
         function showCategory(index) {
-            document.querySelectorAll('[id^="category-"]').forEach(category => {
-                category.style.display = 'none';
+            const container = document.getElementById('carouselContainer');
+            const translateX = -index * 20; // 20% per panel
+            container.style.transform = `translateX(${translateX}%)`;
+            
+            // Update navigation - nouvelle barre iOS
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+            
+            // Update panel states for blur effect
+            document.querySelectorAll('.category-panel').forEach((panel, i) => {
+                panel.classList.remove('active', 'prev', 'next');
+                if (i === index) {
+                    panel.classList.add('active');
+                } else if (i === index - 1 || (index === 0 && i === totalCategories - 1)) {
+                    panel.classList.add('prev');
+                } else if (i === index + 1 || (index === totalCategories - 1 && i === 0)) {
+                    panel.classList.add('next');
+                }
             });
             
-            document.querySelectorAll('.carousel-dot').forEach(dot => {
-                dot.classList.remove('active');
-            });
-            
-            document.getElementById(`category-${index}`).style.display = 'flex';
-            document.querySelectorAll('.carousel-dot')[index].classList.add('active');
             currentCategory = index;
         }
-
-        // Auto-carousel (optionnel)
-        setInterval(() => {
-            currentCategory = (currentCategory + 1) % totalCategories;
-            showCategory(currentCategory);
-        }, 8000);
 
         // Smooth scrolling pour les carousels
         document.querySelectorAll('.certificates-carousel').forEach(carousel => {
@@ -894,33 +964,6 @@
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         });
-
-        // Amélioration de l'effet glass avec le mouvement de la souris - SUPPRIMÉ
-        // document.addEventListener('mousemove', (e) => {
-        //     const glassPanels = document.querySelectorAll('.glass-panel');
-        //     
-        //     glassPanels.forEach(panel => {
-        //         const rect = panel.getBoundingClientRect();
-        //         const x = e.clientX - rect.left;
-        //         const y = e.clientY - rect.top;
-        //         
-        //         const centerX = rect.width / 2;
-        //         const centerY = rect.height / 2;
-        //         
-        //         const rotateX = (y - centerY) / 10;
-        //         const rotateY = (centerX - x) / 10;
-        //         
-        //         panel.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
-        //     });
-        // });
-
-        // Reset transform when mouse leaves - SUPPRIMÉ
-        // document.addEventListener('mouseleave', () => {
-        //     const glassPanels = document.querySelectorAll('.glass-panel');
-        //     glassPanels.forEach(panel => {
-        //         panel.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
-        //     });
-        // });
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
