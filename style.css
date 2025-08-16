@@ -154,13 +154,13 @@ h1 {
 
 /* Carousel pour extra-scolaire */
 .category-carousel {
-    margin: 3rem 0;
+    margin: 1rem 0;
 }
 
 .category-panel {
     display: flex;
     min-height: 500px;
-    margin: 2rem 0;
+    margin: 1rem 0;
     gap: 2rem;
     padding: 2rem;
 }
@@ -485,7 +485,7 @@ footer {
 .carousel-navigation {
     display: flex;
     justify-content: center;
-    margin: 3rem 0;
+    margin: 1rem 0;
 }
 
 .carousel-nav-bar {
