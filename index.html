@@ -507,6 +507,19 @@
             pointer-events: none;
         }
 
+        .bulletin-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .bulletin-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .loader {
             width: 50px;
             height: 50px;
@@ -537,6 +550,10 @@
             padding: 8px;
             gap: 4px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .bulletin-main {
+            flex: 1;
         }
 
         .nav-item {
@@ -722,40 +739,45 @@
         <!-- Section Scolaire -->
         <div id="scolaire" class="section">
             <div class="scolaire-layout">
-                <!-- Panel Bulletins -->
                 <div class="bulletins-panel glass-panel">
                     <h3 class="panel-title">📋 Bulletins scolaires</h3>
                     
                     <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Terminale - 1er Trimestre</div>
-                            <div class="bulletin-meta">Décembre 2024 • Terminale G</div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">17.2/20</span>
-                            <a href="bulletin/bull1.pdf" class="bulletin-link">PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Première - 3e Trimestre</div>
-                            <div class="bulletin-meta">Juin 2024 • Première G</div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">16.8/20</span>
-                            <a href="bulletin/bull2.pdf" class="bulletin-link">PDF</a>
+                        <div class="bulletin-content">
+                            <div class="bulletin-main">
+                                <div class="bulletin-title">Terminale - 1er Trimestre</div>
+                                <div class="bulletin-meta">Décembre 2024 • Terminale G</div>
+                            </div>
+                            <div class="bulletin-actions">
+                                <span class="bulletin-grade">17.2/20</span>
+                                <a href="bulletin/bull1.pdf" class="bulletin-link">PDF</a>
+                            </div>
                         </div>
                     </div>
 
                     <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Première - 2e Trimestre</div>
-                            <div class="bulletin-meta">Mars 2024 • Première G</div>
+                        <div class="bulletin-content">
+                            <div class="bulletin-main">
+                                <div class="bulletin-title">Première - 3e Trimestre</div>
+                                <div class="bulletin-meta">Juin 2024 • Première G</div>
+                            </div>
+                            <div class="bulletin-actions">
+                                <span class="bulletin-grade">16.8/20</span>
+                                <a href="bulletin/bull2.pdf" class="bulletin-link">PDF</a>
+                            </div>
                         </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">16.5/20</span>
-                            <a href="bulletin/bull3.pdf" class="bulletin-link">PDF</a>
+                    </div>
+
+                    <div class="bulletin-item">
+                        <div class="bulletin-content">
+                            <div class="bulletin-main">
+                                <div class="bulletin-title">Première - 2e Trimestre</div>
+                                <div class="bulletin-meta">Mars 2024 • Première G</div>
+                            </div>
+                            <div class="bulletin-actions">
+                                <span class="bulletin-grade">16.5/20</span>
+                                <a href="bulletin/bull3.pdf" class="bulletin-link">PDF</a>
+                            </div>
                         </div>
                     </div>
                 </div>
