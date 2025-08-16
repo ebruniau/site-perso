@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documents - Edgar BRUNIAU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,61 +13,68 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            background: #0a0a0a;
             min-height: 100vh;
-            color: #e5e5e5;
+            color: #ffffff;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Animation d'entrée */
+        @keyframes fadeInGradient {
+            0% { background: #ffffff; }
+            100% { 
+                background: linear-gradient(135deg, 
+                    #ff9a00 0%,
+                    #ffce54 25%,
+                    #8bc34a 50%,
+                    #4facfe 75%,
+                    #8e24aa 100%
+                );
+            }
+        }
+
+        body.loaded {
+            animation: fadeInGradient 2s ease-in-out forwards;
+            background: linear-gradient(135deg, 
+                #ff9a00 0%,
+                #ffce54 25%,
+                #8bc34a 50%,
+                #4facfe 75%,
+                #8e24aa 100%
+            );
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
-        }
-
-        /* Sous-titres pour les sections extrascolaires */
-        .category-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #f5f5f5;
-            margin: 3rem 0 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #3b82f6;
             position: relative;
-            text-align: center;
         }
 
-        .category-title:first-of-type {
-            margin-top: 1rem;
+        /* Glass panel effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .category-title::before {
+        .glass-panel::before {
             content: '';
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -2px;
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
         }
 
-        .category-description {
-            text-align: center;
-            color: #a3a3a3;
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        /* Responsive pour les titres */
-        @media (max-width: 768px) {
-            .category-title {
-                font-size: 1.5rem;
-            }
-        }
-
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 3rem;
@@ -75,221 +83,250 @@
 
         .badge {
             display: inline-block;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            color: #a3a3a3;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 800;
-            color: #f5f5f5;
+            color: #ffffff;
             margin: 1rem 0;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.05em;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
-            color: #a3a3a3;
-            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 300;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Navigation entre sections */
-        .nav-tabs {
+        /* Navigation iOS style */
+        .nav-container {
             display: flex;
             justify-content: center;
-            margin: 3rem 0 2rem 0;
-            border-bottom: 1px solid #2a2a2a;
+            margin: 3rem 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .nav-tab {
-            padding: 1rem 2rem;
-            background: none;
+            padding: 12px 24px;
+            background: transparent;
             border: none;
-            color: #a3a3a3;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-tab:hover {
-            color: #f5f5f5;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
         }
 
         .nav-tab.active {
-            color: #3b82f6;
-            border-bottom-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        /* Sections */
         .section {
             display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .section.active {
             display: block;
+            opacity: 1;
         }
 
-        /* Section Extra-scolaire (style existant) */
-        .extrascolaire-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        /* Carousel pour extra-scolaire */
+        .category-carousel {
+            margin: 3rem 0;
+        }
+
+        .category-panel {
+            display: flex;
+            min-height: 500px;
+            margin: 2rem 0;
             gap: 2rem;
-            margin-top: 3rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            align-items: start;
-        }
-
-        @media (min-width: 768px) {
-            .extrascolaire-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .extrascolaire-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .certificat-card:nth-child(3n+2) {
-                margin-top: 1rem;
-            }
-            
-            .certificat-card:nth-child(3n+3) {
-                margin-top: 0.5rem;
-            }
-        }
-
-        .certificat-card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
             padding: 2rem;
+        }
+
+        .category-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .category-image {
+            flex: 2;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             border-radius: 16px;
-            width: 100%;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
             position: relative;
             overflow: hidden;
         }
 
-        .certificat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Cartes certificats dans carousel */
+        .certificates-carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .certificates-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .certificat-card {
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         .certificat-card:hover {
-            transform: translateY(-8px);
-            border-color: #3b3b3b;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .certificat-card:hover::before {
-            opacity: 1;
-        }
-
-        .certificat-card > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        .certificat-title {
-            font-size: 1.2rem;
+        .certificat-card h3 {
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #f5f5f5;
-            margin-bottom: 1rem;
-            line-height: 1.4;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
         }
 
         .certificat-info {
-            margin-bottom: 1rem;
-            color: #a3a3a3;
-        }
-
-        .certificat-info strong {
-            color: #60a5fa;
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
         }
 
         .certificat-description {
-            color: #9ca3af;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .profile-section {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #2a2a2a;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
         }
 
         .certificat-link {
             display: inline-block;
-            background: #3b82f6;
-            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
             padding: 0.5rem 1rem;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
             transition: all 0.3s ease;
         }
 
         .certificat-link:hover {
-            background: #2563eb;
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-1px);
         }
 
-        /* Section Scolaire */
+        /* Navigation carousel */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        /* Section scolaire layout */
         .scolaire-layout {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
             margin-top: 2rem;
         }
 
-        @media (min-width: 1024px) {
-            .scolaire-layout {
-                grid-template-columns: 1fr 2fr;
-                gap: 3rem;
-            }
+        .bulletins-panel,
+        .documents-panel {
+            padding: 2rem;
         }
 
-        .bulletins-section h3,
-        .documents-section h3,
-        .certificats-section h3 {
-            color: #f5f5f5;
+        .panel-title {
+            color: #ffffff;
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #2a2a2a;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Bulletins (style GitHub) */
+        /* Bulletins */
         .bulletin-item {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
             padding: 1rem 1.5rem;
             margin-bottom: 0.75rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -297,189 +334,117 @@
         }
 
         .bulletin-item:hover {
-            background: #242424;
-            border-color: #3a3a3a;
-        }
-
-        .bulletin-main {
-            flex: 1;
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(5px);
         }
 
         .bulletin-title {
             font-weight: 600;
-            color: #f5f5f5;
+            color: #ffffff;
             font-size: 1rem;
             margin-bottom: 0.25rem;
         }
 
         .bulletin-meta {
-            color: #6b7280;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.875rem;
-            display: flex;
-            gap: 1rem;
         }
 
         .bulletin-grade {
-            background: #059669;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
-        }
-
-        .bulletin-grade.warning {
-            background: #d97706;
-        }
-
-        .bulletin-grade.danger {
-            background: #dc2626;
-        }
-
-        .bulletin-actions {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
+            border: 1px solid rgba(34, 197, 94, 0.3);
         }
 
         .bulletin-link {
-            background: #374151;
-            color: #d1d5db;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
             padding: 0.375rem 0.75rem;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: background 0.2s ease;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
         }
 
         .bulletin-link:hover {
-            background: #4b5563;
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Documents annexes - colonne droite */
-        .documents-right {
+        /* Documents section */
+        .documents-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
         }
 
-        @media (min-width: 1024px) {
-            .documents-right {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-        }
-
-        .certificats-scolaires {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .certificat-scolaire {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 1.5rem;
-            border-radius: 12px;
-            color: white;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .certificat-scolaire:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(30, 58, 138, 0.3);
-        }
-
-        .certificat-scolaire h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .certificat-scolaire .date {
-            color: #93c5fd;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .certificat-scolaire .description {
-            color: #dbeafe;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .certificat-scolaire .link {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: background 0.2s ease;
-            display: inline-block;
-        }
-
-        .certificat-scolaire .link:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
+        .certificats-scolaires,
         .documents-annexes {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            margin-top: 0.5rem;
         }
 
+        .certificat-scolaire,
         .document-item {
-            background: #111827;
-            border: 1px solid #374151;
-            padding: 1rem;
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
+        .certificat-scolaire:hover,
         .document-item:hover {
-            background: #1f2937;
-            border-color: #4b5563;
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
         }
 
+        .certificat-scolaire h4,
         .document-item h4 {
-            color: #f9fafb;
+            color: #ffffff;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .document-item .description {
-            color: #9ca3af;
+        .date,
+        .description {
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.875rem;
             margin-bottom: 0.75rem;
         }
 
-        .document-item .link {
-            background: #6b7280;
-            color: white;
-            padding: 0.375rem 0.75rem;
-            border-radius: 6px;
+        .link {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
             text-decoration: none;
             font-size: 0.875rem;
-            transition: background 0.2s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
-        .document-item .link:hover {
-            background: #4b5563;
+        .link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
             margin-top: 3rem;
-            color: #6b7280;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
         }
 
         /* Responsive */
@@ -488,9 +453,18 @@
                 grid-template-columns: 1fr;
             }
             
-            .documents-right {
+            .documents-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+            }
+            
+            .category-panel {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .category-image {
+                height: 200px;
+                font-size: 4rem;
             }
         }
 
@@ -499,38 +473,60 @@
                 padding: 1rem;
             }
             
-            .nav-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-tab {
-                padding: 0.75rem 1.5rem;
-            }
-            
-            .extrascolaire-container {
-                gap: 1.5rem;
-                margin-top: 2rem;
+            .category-title {
+                font-size: 2rem;
             }
             
             .certificat-card {
-                padding: 1.5rem;
+                min-width: 280px;
             }
             
-            .bulletin-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+            .nav-tab {
+                padding: 10px 16px;
+                font-size: 0.9rem;
             }
-            
-            .bulletin-actions {
-                width: 100%;
-                justify-content: flex-end;
-            }
+        }
+
+        /* Loading animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #ff9a00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
     <div class="container">
         <header>
             <div class="badge">Edgar BRUNIAU</div>
@@ -538,166 +534,123 @@
             <p class="subtitle">Archive centralisée de certificats de différentes natures et de documents justificatifs.</p>
         </header>
 
-        <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showSection('extrascolaire')">Extra-scolaire</button>
-            <button class="nav-tab" onclick="showSection('scolaire')">Scolaire</button>
+        <div class="nav-container">
+            <div class="nav-tabs glass-panel">
+                <button class="nav-tab active" onclick="showSection('extrascolaire')">Extra-scolaire</button>
+                <button class="nav-tab" onclick="showSection('scolaire')">Scolaire</button>
+            </div>
         </div>
 
         <!-- Section Extra-scolaire -->
         <div id="extrascolaire" class="section active">
-            <!-- Section Mathématiques -->
-            <h2 class="category-title">🔢 Mathématiques</h2>
-            <p class="category-description">Compétitions, formations et reconnaissances en mathématiques</p>
-            
-            <div class="extrascolaire-container">
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Olympiades Nationales de Mathématiques</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> Education nationale</p>
-                        <p><strong>Date :</strong> Mars 2025</p>
+            <div class="category-carousel">
+                <div class="category-panel glass-panel" id="category-0">
+                    <div class="category-info">
+                        <h2 class="category-title">Mathématiques</h2>
+                        <p class="category-description">Compétitions, formations et reconnaissances en mathématiques appliquées et théoriques.</p>
+                        <div class="certificates-carousel">
+                            <div class="certificat-card">
+                                <h3>Olympiades Nationales</h3>
+                                <div class="certificat-info">Education nationale • Mars 2025</div>
+                                <p class="certificat-description">6e/1620 au niveau académique</p>
+                                <a href="#" class="certificat-link">Voir certificat</a>
+                            </div>
+                            <div class="certificat-card">
+                                <h3>Club Mathématiques Discrètes</h3>
+                                <div class="certificat-info">ENS Lyon • Mars 2025</div>
+                                <p class="certificat-description">Recommandation M. Bodo Lass</p>
+                                <a href="certificats/reco.pdf" class="certificat-link">Voir lettre</a>
+                            </div>
+                            <div class="certificat-card">
+                                <h3>Coupes Animath</h3>
+                                <div class="certificat-info">Animath • 2024-2025</div>
+                                <p class="certificat-description">Mentions aux deux participations</p>
+                                <a href="certificats/coupeAut.pdf" class="certificat-link">Voir certificat</a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="certificat-description">Compétition nationale, distinction académique, 6e/1620.</p>
-                    <div class="profile-section">
-                        <a href="#" class="certificat-link">Voir le certificat</a>
-                    </div>
-                </div>
-
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Club de Mathématiques Discrètes</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> Institut Camille-Jourdan, ENS Lyon</p>
-                        <p><strong>Date :</strong> Mars 2025</p>
-                    </div>
-                    <p class="certificat-description">Recommandé par M. Bodo Lass, président du club.</p>
-                    <div class="profile-section">
-                        <a href="certificats/reco.pdf" class="certificat-link">Voir la lettre</a>
-                    </div>
-                </div>
-
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Tournoi Interclub</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> CMD, Lyon</p>
-                        <p><strong>Date :</strong> ---</p>
-                    </div>
-                    <p class="certificat-description">Classement national au Tournoi.</p>
-                    <div class="profile-section">
-                        <a href="certificats/reco.pdf" class="certificat-link">Voir la lettre</a>
+                    <div class="category-image">
+                        🔢
                     </div>
                 </div>
 
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Coupes Animath</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> Animath</p>
-                        <p><strong>Date :</strong> 2024, 2025</p>
+                <div class="category-panel glass-panel" id="category-1" style="display: none;">
+                    <div class="category-info">
+                        <h2 class="category-title">Informatique & Programmation</h2>
+                        <p class="category-description">Formations techniques et plateformes de développement en sciences informatiques.</p>
+                        <div class="certificates-carousel">
+                            <div class="certificat-card">
+                                <h3>CS50x Harvard</h3>
+                                <div class="certificat-info">Harvard University • Août 2024</div>
+                                <p class="certificat-description">Formation complète C, Python, SQL, Web</p>
+                                <a href="certificats/CS50x.pdf" class="certificat-link">Voir certificat</a>
+                            </div>
+                            <div class="certificat-card">
+                                <h3>France IOI</h3>
+                                <div class="certificat-info">France IOI • En cours</div>
+                                <p class="certificat-description">Niveau 3, algorithimique avancée</p>
+                                <a href="https://www.france-ioi.org/user/perso.php?sLogin=patator" class="certificat-link">Voir profil</a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="certificat-description">Compétition nationale, mentions aux deux participations.</p>
-                    <div class="profile-section">
-                        <a href="certificats/coupeAut.pdf" class="certificat-link">Voir le certificat (2024)</a>
-                    </div>
-                </div>
-
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Mathraining</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> Mathraining</p>
-                        <p><strong>Date :</strong> ---</p>
-                    </div>
-                    <p class="certificat-description">Classé, Expert</p>
-                    <div class="profile-section">
-                        <a href="https://www.mathraining.be/users/29415" class="certificat-link">Voir le profil</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section Informatique -->
-            <h2 class="category-title">💻 Informatique & Programmation</h2>
-            <p class="category-description">Formations techniques et plateformes de développement</p>
-            
-            <div class="extrascolaire-container">
-                <div class="certificat-card">
-                    <h2 class="certificat-title">CS50 (x)</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> Harvard</p>
-                        <p><strong>Date :</strong> Août 2024</p>
-                    </div>
-                    <p class="certificat-description">Formation complétée en C, Python, SQL, HTML/CSS/JS/Jinja, et frameworks modernes. Projet final incluant une calculatrice (graphique et autonome).</p>
-                    <div class="profile-section">
-                        <a href="certificats/CS50x.pdf" class="certificat-link">Voir le certificat</a>
+                    <div class="category-image">
+                        💻
                     </div>
                 </div>
 
-                <div class="certificat-card">
-                    <h2 class="certificat-title">France IOI</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> France IOI</p>
-                        <p><strong>Date :</strong> ---</p>
+                <div class="category-panel glass-panel" id="category-2" style="display: none;">
+                    <div class="category-info">
+                        <h2 class="category-title">Physique</h2>
+                        <p class="category-description">Formations et expériences en physique fondamentale et appliquée.</p>
+                        <div class="certificates-carousel">
+                            <div class="certificat-card">
+                                <h3>Cours CERN</h3>
+                                <div class="certificat-info">CERN • Juin 2025</div>
+                                <p class="certificat-description">Physique nucléaire et magnétique</p>
+                                <a href="certificats/cern.pdf" class="certificat-link">Voir certificat</a>
+                            </div>
+                            <div class="certificat-card">
+                                <h3>Antimatière</h3>
+                                <div class="certificat-info">CERN, Solvay • Août 2025</div>
+                                <p class="certificat-description">Visite usine et conférence</p>
+                                <a href="#" class="certificat-link">Voir certificat</a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="certificat-description">Classé, Niveau 3</p>
-                    <div class="profile-section">
-                        <a href="https://www.france-ioi.org/user/perso.php?sLogin=patator" class="certificat-link">Voir le profil</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section Physique -->
-            <h2 class="category-title">⚛️ Physique</h2>
-            <p class="category-description">Formations et expériences en physique fondamentale</p>
-            
-            <div class="extrascolaire-container">
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Cours physique magnétique, nucléaire</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> CERN</p>
-                        <p><strong>Date :</strong> Juin 2025</p>
-                    </div>
-                    <p class="certificat-description">Formation complétée en physique, score parfait aux tests.</p>
-                    <div class="profile-section">
-                        <a href="certificats/cern.pdf" class="certificat-link">Voir le certificat</a>
+                    <div class="category-image">
+                        ⚛️
                     </div>
                 </div>
 
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Antimatière</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> CERN, Solvay</p>
-                        <p><strong>Date :</strong> Août 2025</p>
+                <div class="category-panel glass-panel" id="category-3" style="display: none;">
+                    <div class="category-info">
+                        <h2 class="category-title">Humanités & Communication</h2>
+                        <p class="category-description">Compétitions et formations en histoire, éloquence et communication.</p>
+                        <div class="certificates-carousel">
+                            <div class="certificat-card">
+                                <h3>Olympiades d'Histoire</h3>
+                                <div class="certificat-info">International Academic • Mai 2025</div>
+                                <p class="certificat-description">Score 96/100, Junior Varsity</p>
+                                <a href="certificats/His.pdf" class="certificat-link">Voir certificat</a>
+                            </div>
+                            <div class="certificat-card">
+                                <h3>Concours d'Éloquence</h3>
+                                <div class="certificat-info">Atelier Langue FR • Janvier 2025</div>
+                                <p class="certificat-description">Qualifié en demi-finale</p>
+                                <a href="#" class="certificat-link">Voir certificat</a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="certificat-description">Sélectionné pour visiter une usine d'antimatière et assister à une conférence, en ligne.</p>
-                    <div class="profile-section">
-                        <a href="#" class="certificat-link">Voir le certificat</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section Humanités -->
-            <h2 class="category-title">🎭 Humanités & Communication</h2>
-            <p class="category-description">Compétitions et formations en histoire, éloquence et communication</p>
-            
-            <div class="extrascolaire-container">
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Olympiades Internationales d'Histoire</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> International Academic Competitions</p>
-                        <p><strong>Date :</strong> Mai 2025</p>
-                    </div>
-                    <p class="certificat-description">Score de 96/100 au test de sélection. Junior Varsity. Absent aux Olympiades car en voyage.</p>
-                    <div class="profile-section">
-                        <a href="certificats/His.pdf" class="certificat-link">Voir le certificat</a>
+                    <div class="category-image">
+                        🎭
                     </div>
                 </div>
 
-                <div class="certificat-card">
-                    <h2 class="certificat-title">Concours National d'Éloquence</h2>
-                    <div class="certificat-info">
-                        <p><strong>Délivré par :</strong> Atelier de la Langue Française</p>
-                        <p><strong>Date :</strong> Janvier 2025</p>
-                    </div>
-                    <p class="certificat-description">Qualifié en demi-finale.</p>
-                    <div class="profile-section">
-                        <a href="#" class="certificat-link">Voir le certificat</a>
-                    </div>
+                <div class="carousel-nav">
+                    <div class="carousel-dot active" onclick="showCategory(0)"></div>
+                    <div class="carousel-dot" onclick="showCategory(1)"></div>
+                    <div class="carousel-dot" onclick="showCategory(2)"></div>
+                    <div class="carousel-dot" onclick="showCategory(3)"></div>
                 </div>
             </div>
         </div>
@@ -705,17 +658,14 @@
         <!-- Section Scolaire -->
         <div id="scolaire" class="section">
             <div class="scolaire-layout">
-                <!-- Colonne de gauche : Bulletins -->
-                <div class="bulletins-section">
-                    <h3>📋 Bulletins scolaires</h3>
+                <!-- Panel Bulletins -->
+                <div class="bulletins-panel glass-panel">
+                    <h3 class="panel-title">📋 Bulletins scolaires</h3>
                     
                     <div class="bulletin-item">
                         <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Terminale - 1er Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Décembre 2024</span>
-                                <span>🎓 Terminale G</span>
-                            </div>
+                            <div class="bulletin-title">Terminale - 1er Trimestre</div>
+                            <div class="bulletin-meta">Décembre 2024 • Terminale G</div>
                         </div>
                         <div class="bulletin-actions">
                             <span class="bulletin-grade">17.2/20</span>
@@ -725,11 +675,8 @@
 
                     <div class="bulletin-item">
                         <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Première - 3e Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Juin 2024</span>
-                                <span>🎓 Première G</span>
-                            </div>
+                            <div class="bulletin-title">Première - 3e Trimestre</div>
+                            <div class="bulletin-meta">Juin 2024 • Première G</div>
                         </div>
                         <div class="bulletin-actions">
                             <span class="bulletin-grade">16.8/20</span>
@@ -739,212 +686,65 @@
 
                     <div class="bulletin-item">
                         <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Première - 2e Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Mars 2024</span>
-                                <span>🎓 Première G</span>
-                            </div>
+                            <div class="bulletin-title">Première - 2e Trimestre</div>
+                            <div class="bulletin-meta">Mars 2024 • Première G</div>
                         </div>
                         <div class="bulletin-actions">
                             <span class="bulletin-grade">16.5/20</span>
                             <a href="bulletin/bull3.pdf" class="bulletin-link">PDF</a>
                         </div>
                     </div>
-
-                    <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Première - 1er Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Décembre 2023</span>
-                                <span>🎓 Première G</span>
-                            </div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade warning">15.2/20</span>
-                            <a href="bulletin/bull4.pdf" class="bulletin-link">PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Seconde - 3e Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Juin 2023</span>
-                                <span>🎓 Seconde 7</span>
-                            </div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">16.1/20</span>
-                            <a href="bulletin/bull6.pdf" class="bulletin-link">PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Seconde - 3e Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Juin 2023</span>
-                                <span>🎓 Seconde 7</span>
-                            </div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">16.1/20</span>
-                            <a href="bulletin/bull7.pdf" class="bulletin-link">PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Seconde - 3e Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Juin 2023</span>
-                                <span>🎓 Seconde 7</span>
-                            </div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">16.1/20</span>
-                            <a href="bulletin/bull8.pdf" class="bulletin-link">PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Seconde - 3e Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Juin 2023</span>
-                                <span>🎓 Seconde 7</span>
-                            </div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">16.1/20</span>
-                            <a href="bulletin/bull9.pdf" class="bulletin-link">PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bulletin-item">
-                        <div class="bulletin-main">
-                            <div class="bulletin-title">Bulletin Seconde - 3e Trimestre</div>
-                            <div class="bulletin-meta">
-                                <span>📅 Juin 2023</span>
-                                <span>🎓 Seconde 7</span>
-                            </div>
-                        </div>
-                        <div class="bulletin-actions">
-                            <span class="bulletin-grade">16.1/20</span>
-                            <a href="bulletin/bull5.pdf" class="bulletin-link">PDF</a>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Colonne de droite : Certificats scolaires + Documents annexes -->
-                <div class="documents-right">
-                    <!-- Certificats scolaires -->
-                    <div class="certificats-section">
-                        <h3>🏆 Certificats scolaires</h3>
-                        <div class="certificats-scolaires">
-                            <div class="certificat-scolaire">
-                                <h4>Félicitations - EAF de Français</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Obtention du baccalauréat général avec mention très bien (18.2/20)</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
+                <!-- Panel Documents -->
+                <div class="documents-panel glass-panel">
+                    <div class="documents-grid">
+                        <div>
+                            <h3 class="panel-title">🏆 Certificats scolaires</h3>
+                            <div class="certificats-scolaires">
+                                <div class="certificat-scolaire">
+                                    <h4>EAF de Français</h4>
+                                    <div class="date">Juillet 2025</div>
+                                    <div class="description">Mention très bien (18.2/20)</div>
+                                    <a href="#" class="link">Voir diplôme</a>
+                                </div>
 
-                            <div class="certificat-scolaire">
-                                <h4>Félicitations - Brevet des collèges</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Obtention du baccalauréat général avec mention très bien (18.2/20)</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
+                                <div class="certificat-scolaire">
+                                    <h4>Honor Roll</h4>
+                                    <div class="date">Juillet 2024</div>
+                                    <div class="description">Bac Américain, moyenne : 98%</div>
+                                    <a href="#" class="link">Voir diplôme</a>
+                                </div>
 
-                            <div class="certificat-scolaire">
-                                <h4>Honnor Roll</h4>
-                                <div class="date">Juillet 2024</div>
-                                <div class="description">Sur le <i>Honnor Roll</i> du Bac Américain, moyenne : 98%</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
-
-                            <div class="certificat-scolaire">
-                                <h4>Honnor Roll</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Sur le <i>Honnor Roll</i> du Bac Américain, moyenne : 99%</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
-                            
-                            <div class="certificat-scolaire">
-                                <h4>Cambridge</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Obtention du baccalauréat général avec mention très bien (18.2/20)</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
-
-                            <div class="certificat-scolaire">
-                                <h4>PSC1</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Obtention du baccalauréat général avec mention très bien (18.2/20)</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
-
-                            <div class="certificat-scolaire">
-                                <h4>ASSR 1 - 2</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Obtention du baccalauréat général avec mention très bien (18.2/20)</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
-
-                            <div class="certificat-scolaire">
-                                <h4>Pix</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Obtention du baccalauréat général avec mention très bien (18.2/20)</div>
-                                <a href="#" class="link">Voir le diplôme</a>
-                            </div>
-                            
-                            <div class="certificat-scolaire">
-                                <h4>Evalangue</h4>
-                                <div class="date">Juillet 2025</div>
-                                <div class="description">Obtention du baccalauréat général avec mention très bien (18.2/20)</div>
-                                <a href="#" class="link">Voir le diplôme</a>
+                                <div class="certificat-scolaire">
+                                    <h4>Cambridge Certificate</h4>
+                                    <div class="date">Juillet 2025</div>
+                                    <div class="description">Certification internationale</div>
+                                    <a href="#" class="link">Voir diplôme</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Documents annexes -->
-                    <div class="documents-section">
-                        <h3>📁 Documents annexes</h3>
-                        <div class="documents-annexes">
-                            <div class="document-item">
-                                <h4>justificatif d'absence, Avril 2025</h4>
-                                <div class="description">Stage d'observation d'une semaine en laboratoire de recherche</div>
-                                <a href="#" class="link">Télécharger</a>
-                            </div>
+                        <div>
+                            <h3 class="panel-title">📁 Documents annexes</h3>
+                            <div class="documents-annexes">
+                                <div class="document-item">
+                                    <h4>Justificatif absence - Avril 2025</h4>
+                                    <div class="description">Stage laboratoire recherche</div>
+                                    <a href="#" class="link">Télécharger</a>
+                                </div>
 
-                            <div class="document-item">
-                                <h4>Attestation - Stage, Airbus</h4>
-                                <div class="description">Stage d'observation d'une semaine en laboratoire de recherche</div>
-                                <a href="#" class="link">Télécharger</a>
-                            </div>
+                                <div class="document-item">
+                                    <h4>Attestation Stage Airbus</h4>
+                                    <div class="description">Stage d'observation technique</div>
+                                    <a href="#" class="link">Télécharger</a>
+                                </div>
 
-                            <div class="document-item">
-                                <h4>Attestation - Stage, Ministère des Affaires étrangères</h4>
-                                <div class="description">Stage d'observation d'une semaine en laboratoire de recherche</div>
-                                <a href="#" class="link">Télécharger</a>
-                            </div>
-
-                            <div class="document-item">
-                                <h4>Attestation de scolarité</h4>
-                                <div class="description">Document officiel attestant de l'inscription en Terminale</div>
-                                <a href="#" class="link">Télécharger</a>
-                            </div>
-
-                            <div class="document-item">
-                                <h4>Lettre de recommandation - Professeur de Mathématiques</h4>
-                                <div class="description">Recommandation de M. Dupont, professeur de mathématiques</div>
-                                <a href="#" class="link">Télécharger</a>
-                            </div>
-
-                            <div class="document-item">
-                                <h4>Certificat de participation - Semaine des Sciences</h4>
-                                <div class="description">Participation active aux activités scientifiques du lycée</div>
-                                <a href="#" class="link">Télécharger</a>
+                                <div class="document-item">
+                                    <h4>Lettre de recommandation</h4>
+                                    <div class="description">Professeur de Mathématiques</div>
+                                    <a href="#" class="link">Télécharger</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -958,23 +758,211 @@
     </footer>
 
     <script>
+        // Animation d'entrée
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+                document.body.classList.add('loaded');
+            }, 1000);
+        });
+
+        // Navigation sections
         function showSection(sectionName) {
-            // Masquer toutes les sections
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
             
-            // Retirer la classe active de tous les onglets
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Afficher la section sélectionnée
             document.getElementById(sectionName).classList.add('active');
-            
-            // Activer l'onglet correspondant
             event.target.classList.add('active');
         }
+
+        // Carousel categories
+        let currentCategory = 0;
+        const totalCategories = 4;
+
+        function showCategory(index) {
+            document.querySelectorAll('[id^="category-"]').forEach(category => {
+                category.style.display = 'none';
+            });
+            
+            document.querySelectorAll('.carousel-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            document.getElementById(`category-${index}`).style.display = 'flex';
+            document.querySelectorAll('.carousel-dot')[index].classList.add('active');
+            currentCategory = index;
+        }
+
+        // Auto-carousel (optionnel)
+        setInterval(() => {
+            currentCategory = (currentCategory + 1) % totalCategories;
+            showCategory(currentCategory);
+        }, 8000);
+
+        // Smooth scrolling pour les carousels
+        document.querySelectorAll('.certificates-carousel').forEach(carousel => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            carousel.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+        });
+
+        // Parallax effect pour les panneaux
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const panels = document.querySelectorAll('.category-panel');
+            
+            panels.forEach((panel, index) => {
+                const rate = scrolled * -0.5;
+                panel.style.transform = `translateY(${rate}px)`;
+            });
+        });
+
+        // Intersection Observer pour les animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer tous les éléments animés
+        document.querySelectorAll('.certificat-card, .bulletin-item, .certificat-scolaire, .document-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // Gestion tactile pour mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left - next category
+                currentCategory = (currentCategory + 1) % totalCategories;
+                showCategory(currentCategory);
+            }
+            if (touchEndX > touchStartX + 50) {
+                // Swipe right - previous category
+                currentCategory = (currentCategory - 1 + totalCategories) % totalCategories;
+                showCategory(currentCategory);
+            }
+        }
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        // Amélioration de l'effet glass avec le mouvement de la souris - SUPPRIMÉ
+        // document.addEventListener('mousemove', (e) => {
+        //     const glassPanels = document.querySelectorAll('.glass-panel');
+        //     
+        //     glassPanels.forEach(panel => {
+        //         const rect = panel.getBoundingClientRect();
+        //         const x = e.clientX - rect.left;
+        //         const y = e.clientY - rect.top;
+        //         
+        //         const centerX = rect.width / 2;
+        //         const centerY = rect.height / 2;
+        //         
+        //         const rotateX = (y - centerY) / 10;
+        //         const rotateY = (centerX - x) / 10;
+        //         
+        //         panel.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+        //     });
+        // });
+
+        // Reset transform when mouse leaves - SUPPRIMÉ
+        // document.addEventListener('mouseleave', () => {
+        //     const glassPanels = document.querySelectorAll('.glass-panel');
+        //     glassPanels.forEach(panel => {
+        //         panel.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+        //     });
+        // });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                currentCategory = (currentCategory + 1) % totalCategories;
+                showCategory(currentCategory);
+            } else if (e.key === 'ArrowLeft') {
+                currentCategory = (currentCategory - 1 + totalCategories) % totalCategories;
+                showCategory(currentCategory);
+            }
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function updateAnimations() {
+            // Batch DOM updates here
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        }
+
+        // Preload next category images (if any)
+        function preloadNextCategory() {
+            const nextIndex = (currentCategory + 1) % totalCategories;
+            // Preload logic here if needed
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            showCategory(0);
+            
+            // Add stagger animation to cards
+            const cards = document.querySelectorAll('.certificat-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
     </script>
 </body>
 </html>
