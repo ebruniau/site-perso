@@ -145,6 +145,8 @@ h1 {
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    margin: 0; /* Ajout pour supprimer toute marge */
+    padding: 0; /* Ajout pour supprimer tout padding */
 }
 
 .section.active {
