@@ -402,8 +402,9 @@ h1 {
 /* Certificats scolaires - carrés et 2 par ligne */
 .certificats-scolaires {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem; /* Gap réduit */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive avec largeur min */
+    gap: 1rem;
+    max-width: 450px; /* Limite la largeur totale du container */
 }
 
 .documents-annexes {
@@ -415,16 +416,18 @@ h1 {
 .certificat-scolaire {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 1rem; /* Padding réduit de 1.5rem à 1rem */
+    padding: 1rem;
     border-radius: 12px;
     transition: all 0.3s ease;
     cursor: pointer;
-    aspect-ratio: 1.3; /* Plus rectangulaire pour moins de hauteur */
+    aspect-ratio: 1.2; /* Légèrement carré */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-height: 140px; /* Hauteur max réduite de 180px à 140px */
-    min-height: 120px; /* Hauteur min pour éviter écrasement */
+    max-height: 160px; /* Hauteur ajustée */
+    min-height: 140px;
+    width: 100%; /* S'assure que la carte prend toute la largeur disponible */
+    max-width: 220px; /* Limite la largeur maximale de chaque carte */
 }
 
 .certificat-scolaire:hover {
@@ -583,6 +586,13 @@ footer {
     100% { transform: rotate(360deg); }
 }
 
+@media (max-width: 1200px) {
+    .certificats-scolaires {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        max-width: 400px;
+    }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .scolaire-layout {
@@ -605,12 +615,14 @@ footer {
     }
 
     .certificats-scolaires {
-        grid-template-columns: 1fr 1fr; /* Maintient 2 colonnes sur tablette */
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        max-width: 350px;
         gap: 1rem;
     }
 
     .certificat-scolaire {
-        max-height: 160px; /* Légèrement plus grand sur tablette */
+        max-height: 150px;
+        min-height: 130px;
     }
 }
 
@@ -646,10 +658,19 @@ footer {
 
     .certificats-scolaires {
         grid-template-columns: 1fr; /* 1 colonne sur mobile */
+        max-width: 100%;
     }
 
     .certificat-scolaire {
-        aspect-ratio: 2; /* Plus rectangulaire sur mobile */
+        aspect-ratio: 2.5; /* Plus rectangulaire sur mobile */
         max-height: 120px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificat-scolaire {
+        aspect-ratio: 3; /* Encore plus rectangulaire sur très petit écran */
+        max-height: 100px;
     }
 }
