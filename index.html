@@ -597,6 +597,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             max-height: 100%;
         }
+        
+        /* Correction spécifique pour l'image des humanités */
+        #category-3 .category-image img {
+            object-fit: contain; /* Permet de voir l'image entière */
+            background-color: rgba(255, 255, 255, 0.05); /* Fond léger pour les parties non couvertes */
+        }
 
         /* Responsive - CORRIGÉ */
         @media (max-width: 1024px) {
@@ -622,6 +628,11 @@
             .certificats-scolaires {
                 grid-template-columns: repeat(2, minmax(160px, 1fr)); /* 2 colonnes sur tablette */
                 justify-content: center;
+            }
+            
+            /* Correction responsive pour humanités */
+            #category-3 .category-image img {
+                object-fit: cover;
             }
         }
 
