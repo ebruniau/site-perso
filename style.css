@@ -1146,3 +1146,85 @@ h1 {
     margin-bottom: 1rem;
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Styles pour le bouton "Voir plus" */
+.see-more-container {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    position: relative;
+}
+
+.see-more-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+}
+
+.see-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    color: #2c2c2c;
+    font-family: 'Marianne', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.see-more-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.see-more-btn ion-icon {
+    transition: transform 0.3s ease;
+}
+
+.see-more-btn.expanded ion-icon {
+    transform: rotate(180deg);
+}
+
+/* Masquer les éléments supplémentaires initialement */
+.bulletin-item.hidden,
+.certificat-scolaire.hidden,
+.document-item.hidden {
+    display: none;
+}
+
+/* Animation pour l'affichage progressif */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+.show-more-enter {
+    animation: slideDown 0.5s ease forwards;
+}

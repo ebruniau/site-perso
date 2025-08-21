@@ -168,3 +168,87 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.animationDelay = `${index * 0.1}s`;
     });
 });
+
+// Ajouter cette fonction à la fin du fichier script.js
+function initShowMoreSections() {
+    // Configuration pour chaque section
+    const sections = [
+        {
+            container: '.bulletins-panel',
+            items: '.bulletin-item',
+            limit: 3,
+            buttonText: 'Bulletins'
+        },
+        {
+            container: '.certificats-scolaires',
+            items: '.certificat-scolaire',
+            limit: 4,
+            buttonText: 'Certificats'
+        },
+        {
+            container: '.documents-annexes',
+            items: '.document-item',
+            limit: 3,
+            buttonText: 'Documents'
+        }
+    ];
+
+    sections.forEach(section => {
+        const container = document.querySelector(section.container);
+        if (!container) return;
+
+        const items = container.querySelectorAll(section.items);
+        if (items.length <= section.limit) return;
+
+        // Cacher les éléments supplémentaires
+        for (let i = section.limit; i < items.length; i++) {
+            items[i].classList.add('hidden');
+        }
+
+        // Créer le bouton "Voir plus"
+        const seeMoreContainer = document.createElement('div');
+        seeMoreContainer.className = 'see-more-container';
+        
+        const seeMoreBtn = document.createElement('button');
+        seeMoreBtn.className = 'see-more-btn';
+        seeMoreBtn.innerHTML = `
+            <span>Voir plus de ${section.buttonText}</span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+        `;
+
+        seeMoreContainer.appendChild(seeMoreBtn);
+        container.appendChild(seeMoreContainer);
+
+        // Gérer le clic sur le bouton
+        seeMoreBtn.addEventListener('click', function() {
+            const isExpanded = this.classList.contains('expanded');
+            
+            if (isExpanded) {
+                // Replier
+                for (let i = section.limit; i < items.length; i++) {
+                    items[i].classList.add('hidden');
+                    items[i].classList.remove('show-more-enter');
+                }
+                this.classList.remove('expanded');
+                this.querySelector('span').textContent = `Voir plus de ${section.buttonText}`;
+            } else {
+                // Déplier
+                this.classList.add('expanded');
+                this.querySelector('span').textContent = `Voir moins de ${section.buttonText}`;
+                
+                for (let i = section.limit; i < items.length; i++) {
+                    items[i].classList.remove('hidden');
+                    setTimeout(() => {
+                        items[i].classList.add('show-more-enter');
+                    }, 50 * (i - section.limit));
+                }
+            }
+        });
+    });
+}
+
+// Appeler cette fonction après le chargement du DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // ... code existant ...
+    initShowMoreSections();
+});
