@@ -4,9 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documents - Edgar BRUNIAU</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Préchargement des polices critiques -->
+    <link rel="preload" href="fonts/Marianne-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Spectral-Regular.ttf" as="font" type="font/truetype" crossorigin>
+    <link rel="preload" href="fonts/Marianne-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Spectral-Medium.ttf" as="font" type="font/truetype" crossorigin>
+    
     <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/055/861/795/small/earth-pixel-art-icon-8-bit-world-orb-icon-png.png">
     <style>
+        /* =================================
+           DÉCLARATION DES POLICES PERSONNALISÉES
+           ================================= */
+
+        /* Marianne - Pour les titres et éléments UI */
+        @font-face {
+            font-family: 'Marianne';
+            src: url('fonts/Marianne-Regular.woff2') format('woff2'),
+                 url('fonts/Marianne-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Marianne';
+            src: url('fonts/Marianne-Medium.woff2') format('woff2'),
+                 url('fonts/Marianne-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Marianne';
+            src: url('fonts/Marianne-Bold.woff2') format('woff2'),
+                 url('fonts/Marianne-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Marianne';
+            src: url('fonts/Marianne-ExtraBold.woff2') format('woff2'),
+                 url('fonts/Marianne-ExtraBold.woff') format('woff');
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Spectral - Pour le contenu textuel */
+        @font-face {
+            font-family: 'Spectral';
+            src: url('fonts/Spectral-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Spectral';
+            src: url('fonts/Spectral-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Spectral';
+            src: url('fonts/Spectral-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Spectral';
+            src: url('fonts/Spectral-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Spectral';
+            src: url('fonts/Spectral-Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        /* =================================
+           STYLES DE BASE
+           ================================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -14,8 +106,9 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            font-family: 'Spectral', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.7;
             min-height: 100vh;
             color: #2c2c2c;
             overflow-x: hidden;
@@ -33,18 +126,18 @@
                 background: 
                     radial-gradient(circle at 20% 30%, rgba(170, 171, 185, 0.4) 0%, transparent 50%),
                     radial-gradient(circle at 80% 10%, rgba(203, 218, 224, 0.3) 0%, transparent 40%),
-                    radial-gradient(circle at 10% 80%, rgba(250, 215, 153, 0.65) 0%, transparent 45%), /* Augmenté de 0.5 à 0.65 */
-                    radial-gradient(circle at 90% 70%, rgba(244, 185, 126, 0.55) 0%, transparent 55%), /* Augmenté de 0.4 à 0.55 */
-                    radial-gradient(circle at 60% 90%, rgba(250, 151, 87, 0.4) 0%, transparent 35%), /* Augmenté de 0.3 à 0.4 */
-                    radial-gradient(circle at 40% 20%, rgba(254, 94, 20, 0.575) 0%, transparent 30%), /* Augmenté de 0.2 à 0.35 */
-                    radial-gradient(circle at 70% 40%, rgba(201, 47, 5, 0.534) 0%, transparent 35%), /* Augmenté de 0.15 à 0.25 */
-                    radial-gradient(circle at 50% 50%, rgba(254, 94, 20, 0.479) 0%, transparent 30%), /* NOUVEAU foyer central */
+                    radial-gradient(circle at 10% 80%, rgba(250, 215, 153, 0.65) 0%, transparent 45%),
+                    radial-gradient(circle at 90% 70%, rgba(244, 185, 126, 0.55) 0%, transparent 55%),
+                    radial-gradient(circle at 60% 90%, rgba(250, 151, 87, 0.4) 0%, transparent 35%),
+                    radial-gradient(circle at 40% 20%, rgba(254, 94, 20, 0.575) 0%, transparent 30%),
+                    radial-gradient(circle at 70% 40%, rgba(201, 47, 5, 0.534) 0%, transparent 35%),
+                    radial-gradient(circle at 50% 50%, rgba(254, 94, 20, 0.479) 0%, transparent 30%),
                     linear-gradient(45deg, 
                         rgba(170, 171, 185, 0.1) 0%, 
                         rgba(203, 218, 224, 0.15) 25%, 
-                        rgba(250, 215, 153, 0.35) 50%, /* Augmenté de 0.2 à 0.35 */
-                        rgba(244, 185, 126, 0.25) 75%, /* Augmenté de 0.15 à 0.25 */
-                        rgba(250, 151, 87, 0.15) 100%  /* Augmenté de 0.1 à 0.15 */
+                        rgba(250, 215, 153, 0.35) 50%,
+                        rgba(244, 185, 126, 0.25) 75%,
+                        rgba(250, 151, 87, 0.15) 100%
                     ),
                     #f8f9fa;
                 opacity: 1;
@@ -56,18 +149,18 @@
             background: 
                 radial-gradient(circle at 20% 30%, rgba(170, 171, 185, 0.4) 0%, transparent 50%),
                 radial-gradient(circle at 80% 10%, rgba(203, 218, 224, 0.3) 0%, transparent 40%),
-                radial-gradient(circle at 10% 80%, rgba(250, 215, 153, 0.65) 0%, transparent 45%), /* Augmenté de 0.5 à 0.65 */
-                radial-gradient(circle at 90% 70%, rgba(244, 185, 126, 0.514) 0%, transparent 55%), /* Augmenté de 0.4 à 0.55 */
-                radial-gradient(circle at 60% 90%, rgba(250, 152, 87, 0.459) 0%, transparent 35%), /* Augmenté de 0.3 à 0.4 */
-                radial-gradient(circle at 40% 20%, rgba(254, 94, 20, 0.39) 0%, transparent 30%), /* Augmenté de 0.2 à 0.35 */
-                radial-gradient(circle at 70% 40%, rgba(211, 53, 10, 0.377) 0%, transparent 35%), /* Augmenté de 0.15 à 0.25 */
-                radial-gradient(circle at 50% 50%, rgba(254, 94, 20, 0.493) 0%, transparent 30%), /* NOUVEAU foyer central */
+                radial-gradient(circle at 10% 80%, rgba(250, 215, 153, 0.65) 0%, transparent 45%),
+                radial-gradient(circle at 90% 70%, rgba(244, 185, 126, 0.514) 0%, transparent 55%),
+                radial-gradient(circle at 60% 90%, rgba(250, 152, 87, 0.459) 0%, transparent 35%),
+                radial-gradient(circle at 40% 20%, rgba(254, 94, 20, 0.39) 0%, transparent 30%),
+                radial-gradient(circle at 70% 40%, rgba(211, 53, 10, 0.377) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(254, 94, 20, 0.493) 0%, transparent 30%),
                 linear-gradient(45deg, 
                     rgba(170, 171, 185, 0.1) 0%, 
                     rgba(203, 218, 224, 0.15) 25%, 
-                    rgba(250, 215, 153, 0.35) 50%, /* Augmenté de 0.2 à 0.35 */
-                    rgba(244, 185, 126, 0.25) 75%, /* Augmenté de 0.15 à 0.25 */
-                    rgba(250, 151, 87, 0.15) 100%  /* Augmenté de 0.1 à 0.15 */
+                    rgba(250, 215, 153, 0.35) 50%,
+                    rgba(244, 185, 126, 0.25) 75%,
+                    rgba(250, 151, 87, 0.15) 100%
                 ),
                 #f8f9fa;
         }
@@ -136,6 +229,85 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
         }
 
+        /* =================================
+           TYPOGRAPHIE - TITRES
+           ================================= */
+
+        h1 {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            color: #2c2c2c;
+            margin: 1rem 0;
+            letter-spacing: -0.05em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, .category-title {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.02em;
+        }
+
+        h3, .panel-title {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #2c2c2c;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h4, .certificat-card h3, .bulletin-title {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+        }
+
+        /* =================================
+           TYPOGRAPHIE - CONTENU
+           ================================= */
+
+        .subtitle {
+            font-family: 'Spectral', Georgia, serif;
+            color: #4a4a4a;
+            font-size: 1.2rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .category-description {
+            font-family: 'Spectral', Georgia, serif;
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .certificat-info, .bulletin-meta, .date, .description {
+            font-family: 'Spectral', Georgia, serif;
+            color: #5a5a5a;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .certificat-description {
+            font-family: 'Spectral', Georgia, serif;
+            color: #4a4a4a;
+            font-weight: 400;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
         /* Header */
         header {
             text-align: center;
@@ -144,6 +316,7 @@
         }
 
         .badge {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
             display: inline-block;
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
@@ -156,23 +329,6 @@
             margin-bottom: 1.5rem;
             letter-spacing: 0.5px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
-            color: #2c2c2c;
-            margin: 1rem 0;
-            letter-spacing: -0.05em;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .subtitle {
-            color: #4a4a4a;
-            font-size: 1.2rem;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         /* Navigation iOS style adaptée */
@@ -193,6 +349,7 @@
         }
 
         .nav-tab {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
             padding: 12px 24px;
             background: transparent;
             border: none;
@@ -202,12 +359,12 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 12px;
-            font-family: 'Inter', sans-serif;
         }
 
         .nav-tab.active {
             background: rgba(255, 255, 255, 0.5);
             color: #2c2c2c;
+            font-weight: 600;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
@@ -261,22 +418,6 @@
             max-height: calc(100% - 4rem);
         }
 
-        .category-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2c2c2c;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .category-description {
-            color: #4a4a4a;
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
         /* Cartes certificats dans carousel */
         .certificates-carousel {
             display: flex;
@@ -322,13 +463,8 @@
             margin-bottom: 0.75rem;
         }
 
-        .certificat-description {
-            color: #4a4a4a;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
         .certificat-link {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
             display: inline-block;
             background: rgba(254, 95, 20, 0.2);
             color: #C93005;
@@ -365,6 +501,7 @@
         }
 
         .nav-item {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -377,13 +514,13 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: 'Inter', sans-serif;
             white-space: nowrap;
         }
 
         .nav-item.active {
             background: rgba(255, 255, 255, 0.5);
             color: #2c2c2c;
+            font-weight: 600;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -407,14 +544,6 @@
         .bulletins-panel,
         .documents-panel {
             padding: 2rem;
-        }
-
-        .panel-title {
-            color: #2c2c2c;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         }
 
         /* Bulletins */
@@ -467,17 +596,19 @@
         }
 
         .bulletin-grade {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
             background: rgba(139, 195, 74, 0.3);
             color: #558B2F;
             padding: 0.5rem 0.75rem;
             border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             border: 1px solid rgba(139, 195, 74, 0.4);
             white-space: nowrap;
         }
 
         .bulletin-link {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
             background: rgba(255, 255, 255, 0.3);
             color: #2c2c2c;
             padding: 0.5rem 0.75rem;
@@ -571,6 +702,7 @@
         }
 
         .link {
+            font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
             background: rgba(244, 185, 126, 0.3);
             color: #C93005;
             padding: 0.4rem 0.8rem;
@@ -592,11 +724,13 @@
 
         /* Footer */
         footer {
+            font-family: 'Spectral', Georgia, serif;
             text-align: center;
             padding: 3rem 2rem;
             margin-top: 3rem;
             color: #6a6a6a;
-            font-weight: 300;
+            font-weight: 400;
+            font-style: italic;
         }
 
         /* Loading animation */
@@ -644,7 +778,25 @@
             max-height: 100%;
         }
 
-        /* Responsive */
+        /* =================================
+           FALLBACKS ET OPTIMISATIONS
+           ================================= */
+
+        /* Fallback si les polices ne se chargent pas */
+        @supports not (font-display: swap) {
+            body {
+                font-family: Georgia, serif;
+            }
+            
+            h1, h2, h3, h4, .nav-tab, .nav-item, .badge {
+                font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            }
+        }
+
+        /* =================================
+           RESPONSIVE
+           ================================= */
+
         @media (max-width: 1024px) {
             .scolaire-layout {
                 grid-template-columns: 1fr;
@@ -676,8 +828,16 @@
                 padding: 1rem;
             }
             
-            .category-title {
+            .category-title, h2 {
                 font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .category-description {
+                font-size: 1rem;
             }
             
             .certificat-card {
