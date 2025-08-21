@@ -225,7 +225,7 @@ font-size: clamp(3rem, 8vw, 6rem);
 font-weight: 800;
 color: #2c2c2c;
 margin: 1rem 0;
-letter-spacing: -0.025em;
+letter-spacing: -0.05em;
 text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
