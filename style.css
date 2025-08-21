@@ -1,645 +1,1148 @@
+
+/* =================================
+DÉCLARATION DES POLICES PERSONNALISÉES
+================================= */
+
+/* Marianne - Pour les titres et éléments UI */
+@font-face {
+font-family: 'Marianne';
+src: url('fonts/Marianne-Regular.woff2') format('woff2'),
+    url('fonts/Marianne-Regular.woff') format('woff');
+font-weight: 400;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Marianne';
+src: url('fonts/Marianne-Medium.woff2') format('woff2'),
+    url('fonts/Marianne-Medium.woff') format('woff');
+font-weight: 500;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Marianne';
+src: url('fonts/Marianne-Bold.woff2') format('woff2'),
+    url('fonts/Marianne-Bold.woff') format('woff');
+font-weight: 700;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Marianne';
+src: url('fonts/Marianne-ExtraBold.woff2') format('woff2'),
+    url('fonts/Marianne-ExtraBold.woff') format('woff');
+font-weight: 800;
+font-style: normal;
+font-display: swap;
+}
+
+/* Spectral - Pour le contenu textuel */
+@font-face {
+font-family: 'Spectral';
+src: url('fonts/Spectral-Regular.ttf') format('truetype');
+font-weight: 400;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Spectral';
+src: url('fonts/Spectral-Medium.ttf') format('truetype');
+font-weight: 500;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Spectral';
+src: url('fonts/Spectral-SemiBold.ttf') format('truetype');
+font-weight: 600;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Spectral';
+src: url('fonts/Spectral-Bold.ttf') format('truetype');
+font-weight: 700;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Spectral';
+src: url('fonts/Spectral-Italic.ttf') format('truetype');
+font-weight: 400;
+font-style: italic;
+font-display: swap;
+}
+
+/* =================================
+STYLES DE BASE
+================================= */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    min-height: 100vh;
-    color: #ffffff;
-    overflow-x: hidden;
-    background: #ffffff;
+font-family: 'Spectral', Georgia, serif;
+font-weight: 400;
+line-height: 1.7;
+min-height: 100vh;
+color: #2c2c2c;
+overflow-x: hidden;
+background: #ffffff;
+position: relative;
 }
 
-/* Animation d'entrée */
+/* Nouveau background organique avec effet poudré */
 @keyframes fadeInGradient {
-    0% { background: #ffffff; }
-    100% { 
-        background: linear-gradient(135deg, 
-            #ff9a00 0%,
-            #ffce54 25%,
-            #8bc34a 50%,
-            #4facfe 75%,
-            #8e24aa 100%
-        );
-    }
+0% { 
+    background: #ffffff; 
+    opacity: 0;
+}
+100% { 
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(170, 171, 185, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 10%, rgba(203, 218, 224, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(250, 215, 153, 0.65) 0%, transparent 45%),
+        radial-gradient(circle at 90% 70%, rgba(244, 185, 126, 0.55) 0%, transparent 55%),
+        radial-gradient(circle at 60% 90%, rgba(250, 151, 87, 0.4) 0%, transparent 35%),
+        radial-gradient(circle at 40% 20%, rgba(254, 94, 20, 0.575) 0%, transparent 30%),
+        radial-gradient(circle at 70% 40%, rgba(201, 47, 5, 0.534) 0%, transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(254, 94, 20, 0.479) 0%, transparent 30%),
+        linear-gradient(45deg, 
+            rgba(170, 171, 185, 0.1) 0%, 
+            rgba(203, 218, 224, 0.15) 25%, 
+            rgba(250, 215, 153, 0.35) 50%,
+            rgba(244, 185, 126, 0.25) 75%,
+            rgba(250, 151, 87, 0.15) 100%
+        ),
+        #f8f9fa;
+    opacity: 1;
+}
 }
 
 body.loaded {
-    animation: fadeInGradient 2s ease-in-out forwards;
-    background: linear-gradient(135deg, 
-        #ff9a00 0%,
-        #ffce54 25%,
-        #8bc34a 50%,
-        #4facfe 75%,
-        #8e24aa 100%
-    );
+animation: fadeInGradient 2s ease-in-out forwards;
+background: 
+    radial-gradient(circle at 20% 30%, rgba(170, 171, 185, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 10%, rgba(203, 218, 224, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 10% 80%, rgba(250, 215, 153, 0.65) 0%, transparent 45%),
+    radial-gradient(circle at 90% 70%, rgba(244, 185, 126, 0.514) 0%, transparent 55%),
+    radial-gradient(circle at 60% 90%, rgba(250, 152, 87, 0.459) 0%, transparent 35%),
+    radial-gradient(circle at 40% 20%, rgba(254, 94, 20, 0.39) 0%, transparent 30%),
+    radial-gradient(circle at 70% 40%, rgba(211, 53, 10, 0.377) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(254, 94, 20, 0.493) 0%, transparent 30%),
+    linear-gradient(45deg, 
+        rgba(170, 171, 185, 0.1) 0%, 
+        rgba(203, 218, 224, 0.15) 25%, 
+        rgba(250, 215, 153, 0.35) 50%,
+        rgba(244, 185, 126, 0.25) 75%,
+        rgba(250, 151, 87, 0.15) 100%
+    ),
+    #f8f9fa;
+}
+
+/* Effet de brume subtile avec animation */
+body::before {
+content: '';
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: 
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 30%),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.3) 0%, transparent 25%),
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.35) 0%, transparent 35%);
+pointer-events: none;
+z-index: 1;
+animation: mistFloat 20s ease-in-out infinite alternate;
+}
+
+@keyframes mistFloat {
+0% { 
+    transform: translateX(-2px) translateY(-1px) rotate(0deg);
+    opacity: 0.3;
+}
+50% {
+    transform: translateX(3px) translateY(2px) rotate(0.5deg);
+    opacity: 0.5;
+}
+100% { 
+    transform: translateX(-1px) translateY(-2px) rotate(-0.3deg);
+    opacity: 0.4;
+}
 }
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    position: relative;
+max-width: 1400px;
+margin: 0 auto;
+padding: 2rem;
+position: relative;
+z-index: 2;
 }
 
-/* Glass panel effect */
+/* Glass panel effect adapté aux nouvelles couleurs */
 .glass-panel {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
+background: rgba(255, 255, 255, 0.25);
+backdrop-filter: blur(20px);
+border-radius: 24px;
+border: 1px solid rgba(255, 255, 255, 0.3);
+box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+position: relative;
+overflow: hidden;
 }
 
 .glass-panel::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+}
+
+/* =================================
+TYPOGRAPHIE - TITRES
+================================= */
+
+h1 {
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+font-size: clamp(3rem, 8vw, 6rem);
+font-weight: 800;
+color: #2c2c2c;
+margin: 1rem 0;
+letter-spacing: -0.05em;
+text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2, .category-title {
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+font-size: 2.5rem;
+font-weight: 700;
+color: #2c2c2c;
+margin-bottom: 1rem;
+text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+letter-spacing: -0.02em;
+}
+
+h3, .panel-title {
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+color: #2c2c2c;
+font-size: 1.5rem;
+font-weight: 600;
+margin-bottom: 2rem;
+text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+h4, .certificat-card h3, .bulletin-title {
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+font-weight: 600;
+color: #2c2c2c;
+margin-bottom: 0.5rem;
+}
+
+/* =================================
+TYPOGRAPHIE - CONTENU
+================================= */
+
+.subtitle {
+font-family: 'Spectral', Georgia, serif;
+color: #4a4a4a;
+font-size: 1.2rem;
+font-weight: 400;
+max-width: 600px;
+margin: 0 auto;
+line-height: 1.6;
+}
+
+.category-description {
+font-family: 'Spectral', Georgia, serif;
+color: #4a4a4a;
+font-size: 1.1rem;
+font-weight: 400;
+margin-bottom: 2rem;
+line-height: 1.6;
+}
+
+.certificat-info, .bulletin-meta, .date, .description {
+font-family: 'Spectral', Georgia, serif;
+color: #5a5a5a;
+font-weight: 500;
+font-size: 0.875rem;
+}
+
+.certificat-description {
+font-family: 'Spectral', Georgia, serif;
+color: #4a4a4a;
+font-weight: 400;
+font-size: 0.85rem;
+font-style: italic;
+margin-bottom: 1rem;
 }
 
 /* Header */
 header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem 0;
+text-align: center;
+margin-bottom: 3rem;
+padding: 2rem 0;
 }
 
 .badge {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.5px;
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+display: inline-block;
+background: rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.4);
+color: #3a3a3a;
+padding: 0.75rem 1.5rem;
+border-radius: 50px;
+font-size: 0.9rem;
+font-weight: 500;
+margin-bottom: 1.5rem;
+letter-spacing: 0.5px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 800;
-    color: #ffffff;
-    margin: 1rem 0;
-    letter-spacing: -0.05em;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.subtitle {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.2rem;
-    font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Navigation iOS style */
+/* Navigation iOS style adaptée */
 .nav-container {
-    display: flex;
-    justify-content: center;
-    margin: 3rem 0;
+display: flex;
+justify-content: center;
+margin: 3rem 0;
 }
 
 .nav-tabs {
-    display: flex;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+display: flex;
+background: rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.4);
+border-radius: 16px;
+padding: 4px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .nav-tab {
-    padding: 12px 24px;
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 12px;
-    font-family: 'Inter', sans-serif;
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+padding: 12px 24px;
+background: transparent;
+border: none;
+color: #4a4a4a;
+font-size: 1rem;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border-radius: 12px;
 }
 
 .nav-tab.active {
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+background: rgba(255, 255, 255, 0.5);
+color: #2c2c2c;
+font-weight: 600;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Sections */
 .section {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    margin: 0;
-    padding: 0;
+display: none;
+opacity: 0;
+transition: opacity 0.5s ease-in-out;
+margin: 0;
+padding: 0;
 }
 
 .section.active {
-    display: block;
-    opacity: 1;
+display: block;
+opacity: 1;
 }
 
 /* Carousel pour extra-scolaire */
 .category-carousel {
-    padding-top: 1rem;
-    margin: 0; 
+padding-top: 1rem;
+margin: 0; 
 }
 
 .category-panel {
-    display: flex;
-    min-height: 500px;
-    margin: 0;
-    margin-top: 0.5rem;
-    gap: 2rem;
-    padding: 2rem;
+display: flex;
+min-height: 500px;
+margin: 0;
+margin-top: 0.5rem;
+gap: 2rem;
+padding: 2rem;
 }
 
 .category-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 2rem;
 }
 
 .category-image {
-    flex: 2;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.category-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 1rem;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.category-description {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+flex: 2;
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+border-radius: 16px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 8rem;
+position: relative;
+overflow: hidden;
+max-height: calc(100% - 4rem);
 }
 
 /* Cartes certificats dans carousel */
 .certificates-carousel {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding: 1rem 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+display: flex;
+gap: 1rem;
+overflow-x: auto;
+padding: 1rem 0;
+scrollbar-width: none;
+-ms-overflow-style: none;
 }
 
 .certificates-carousel::-webkit-scrollbar {
-    display: none;
+display: none;
 }
 
 .certificat-card {
-    min-width: 300px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 1.5rem;
-    border-radius: 16px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
+min-width: 300px;
+background: rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(15px);
+border: 1px solid rgba(255, 255, 255, 0.4);
+padding: 1.5rem;
+border-radius: 16px;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+cursor: pointer;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .certificat-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+transform: translateY(-5px) scale(1.02);
+background: rgba(255, 255, 255, 0.4);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .certificat-card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
+font-size: 1.1rem;
+font-weight: 600;
+color: #2c2c2c;
+margin-bottom: 0.5rem;
 }
 
 .certificat-info {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
-}
-
-.certificat-description {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
+color: #5a5a5a;
+font-size: 0.9rem;
+margin-bottom: 0.75rem;
 }
 
 .certificat-link {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+display: inline-block;
+background: rgba(254, 95, 20, 0.2);
+color: #C93005;
+padding: 0.5rem 1rem;
+border-radius: 8px;
+text-decoration: none;
+font-size: 0.8rem;
+font-weight: 500;
+transition: all 0.3s ease;
+border: 1px solid rgba(254, 95, 20, 0.3);
 }
 
 .certificat-link:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-1px);
+background: rgba(254, 95, 20, 0.3);
+transform: translateY(-1px);
 }
 
-/* Navigation carousel */
-.carousel-nav {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 2rem 0;
+/* Navigation carousel adaptée */
+.carousel-navigation {
+display: flex;
+justify-content: center;
+margin: -0.5rem 0 3rem 0;
 }
 
-.carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
+.carousel-nav-bar {
+display: flex;
+background: rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.4);
+border-radius: 20px;
+padding: 8px;
+gap: 4px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.carousel-dot.active {
-    background: rgba(255, 255, 255, 0.8);
-    transform: scale(1.2);
+.nav-item {
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 12px 16px;
+border-radius: 16px;
+background: transparent;
+border: none;
+color: #5a5a5a;
+font-size: 0.9rem;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+white-space: nowrap;
+}
+
+.nav-item.active {
+background: rgba(255, 255, 255, 0.5);
+color: #2c2c2c;
+font-weight: 600;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item:hover:not(.active) {
+background: rgba(255, 255, 255, 0.4);
+color: #3a3a3a;
+}
+
+.nav-icon {
+font-size: 1.1rem;
 }
 
 /* Section scolaire layout */
 .scolaire-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 2rem;
-    margin-top: 2rem;
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 2rem;
+margin-top: 2rem;
 }
 
 .bulletins-panel,
 .documents-panel {
-    padding: 2rem;
-}
-
-.panel-title {
-    color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+padding: 2rem;
 }
 
 /* Bulletins */
 .bulletin-item {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 0.75rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
+background: rgba(255, 255, 255, 0.2);
+border: 1px solid rgba(255, 255, 255, 0.3);
+border-radius: 12px;
+padding: 1.5rem;
+margin-bottom: 0.75rem;
+transition: all 0.3s ease;
+cursor: pointer;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .bulletin-item:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateX(5px);
+background: rgba(255, 255, 255, 0.3);
+transform: translateX(5px);
 }
 
 .bulletin-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+gap: 1rem;
 }
 
 .bulletin-main {
-    flex: 1;
-    min-width: 0;
+flex: 1;
+min-width: 0;
 }
 
 .bulletin-title {
-    font-weight: 600;
-    color: #ffffff;
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
+font-weight: 600;
+color: #2c2c2c;
+font-size: 1rem;
+margin-bottom: 0.25rem;
 }
 
 .bulletin-meta {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.875rem;
+color: #5a5a5a;
+font-size: 0.875rem;
 }
 
 .bulletin-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
+display: flex;
+align-items: center;
+gap: 0.75rem;
+flex-shrink: 0;
 }
 
 .bulletin-grade {
-    background: rgba(34, 197, 94, 0.2);
-    color: #22c55e;
-    padding: 0.5rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    white-space: nowrap;
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+background: rgba(139, 195, 74, 0.3);
+color: #558B2F;
+padding: 0.5rem 0.75rem;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 700;
+border: 1px solid rgba(139, 195, 74, 0.4);
+white-space: nowrap;
 }
 
 .bulletin-link {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    padding: 0.5rem 0.75rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+background: rgba(255, 255, 255, 0.3);
+color: #2c2c2c;
+padding: 0.5rem 0.75rem;
+border-radius: 8px;
+text-decoration: none;
+font-size: 0.875rem;
+font-weight: 500;
+transition: all 0.3s ease;
+white-space: nowrap;
+border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .bulletin-link:hover {
-    background: rgba(255, 255, 255, 0.2);
+background: rgba(255, 255, 255, 0.5);
 }
 
-/* Documents section - CORRIGÉ */
+/* Documents section */
 .documents-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-    align-items: start;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2.5rem;
+align-items: start;
 }
 
-/* Certificats scolaires - CORRIGÉ AVEC TAILLE FIXE */
 .certificats-scolaires {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 200px)); /* 2 colonnes avec taille fixe */
-    gap: 1rem;
-    justify-content: start; /* Aligne à gauche */
+display: grid;
+grid-template-columns: repeat(2, minmax(140px, 200px));
+gap: 1rem;
+justify-content: start;
 }
 
 .documents-annexes {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+display: flex;
+flex-direction: column;
+gap: 1rem;
 }
 
 .certificat-scolaire {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 1rem;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    aspect-ratio: 1.1; /* Légèrement carré */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 200px; /* Largeur max fixe */
-    height: auto;
-    max-height: 180px; /* Hauteur max fixe */
+background: rgba(255, 255, 255, 0.2);
+border: 1px solid rgba(255, 255, 255, 0.3);
+padding: 1rem;
+border-radius: 12px;
+transition: all 0.3s ease;
+cursor: pointer;
+aspect-ratio: 1.1;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+width: 100%;
+max-width: 200px;
+height: auto;
+max-height: 180px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .certificat-scolaire:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
+background: rgba(255, 255, 255, 0.3);
+transform: translateY(-2px);
 }
 
 .document-item {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 1.5rem;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+background: rgba(255, 255, 255, 0.2);
+border: 1px solid rgba(255, 255, 255, 0.3);
+padding: 1.5rem;
+border-radius: 12px;
+transition: all 0.3s ease;
+cursor: pointer;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .document-item:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
+background: rgba(255, 255, 255, 0.3);
+transform: translateY(-2px);
 }
 
 .certificat-scolaire h4,
 .document-item h4 {
-    color: #ffffff;
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-    line-height: 1.2;
+color: #2c2c2c;
+font-size: 0.95rem;
+font-weight: 600;
+margin-bottom: 0.4rem;
+line-height: 1.2;
 }
 
 .date,
 .description {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+color: #5a5a5a;
+font-size: 0.8rem;
+margin-bottom: 0.5rem;
+line-height: 1.3;
 }
 
 .link {
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: inline-block;
-    text-align: center;
-    margin-top: auto;
+font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
+background: rgba(244, 185, 126, 0.3);
+color: #C93005;
+padding: 0.4rem 0.8rem;
+border-radius: 8px;
+text-decoration: none;
+font-size: 0.8rem;
+font-weight: 500;
+transition: all 0.3s ease;
+display: inline-block;
+text-align: center;
+margin-top: auto;
+border: 1px solid rgba(244, 185, 126, 0.4);
 }
 
 .link:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-1px);
+background: rgba(244, 185, 126, 0.5);
+transform: translateY(-1px);
 }
 
 /* Footer */
 footer {
-    text-align: center;
-    padding: 3rem 2rem;
-    margin-top: 3rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 300;
-}
-
-/* Navigation carousel - CORRIGÉ */
-.carousel-navigation {
-    display: flex;
-    justify-content: center;
-    margin: -0.5rem 0 3rem 0; /* Remonte légèrement */
-}
-
-.carousel-nav-bar {
-    display: flex;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 8px;
-    gap: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.nav-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 16px;
-    border-radius: 16px;
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: 'Inter', sans-serif;
-    white-space: nowrap;
-}
-
-.nav-item.active {
-    background: rgba(0, 0, 0, 0.2);
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.nav-item:hover:not(.active) {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.nav-icon {
-    font-size: 1.1rem;
+font-family: 'Spectral', Georgia, serif;
+text-align: center;
+padding: 3rem 2rem;
+margin-top: 3rem;
+color: #6a6a6a;
+font-weight: 400;
+font-style: italic;
 }
 
 /* Loading animation */
 .loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s ease-in-out;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #ffffff;
+z-index: 9999;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: opacity 0.5s ease-in-out;
 }
 
 .loading-overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
+opacity: 0;
+pointer-events: none;
 }
 
 .loader {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(0, 0, 0, 0.1);
-    border-top: 3px solid #ff9a00;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+width: 50px;
+height: 50px;
+border: 3px solid rgba(170, 171, 185, 0.3);
+border-top: 3px solid #FA9757;
+border-radius: 50%;
+animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
 }
 
-/* Responsive - CORRIGÉ */
+/* Images dans category */
+.category-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center;
+border-radius: 12px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+max-height: 100%;
+}
+
+/* =================================
+FALLBACKS ET OPTIMISATIONS
+================================= */
+
+/* Fallback si les polices ne se chargent pas */
+@supports not (font-display: swap) {
+body {
+    font-family: Georgia, serif;
+}
+
+h1, h2, h3, h4, .nav-tab, .nav-item, .badge {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+}
+
+/* =================================
+RESPONSIVE
+================================= */
+
+/* Tablette (1024px et moins) */
 @media (max-width: 1024px) {
-    .scolaire-layout {
-        grid-template-columns: 1fr;
-    }
-    
-    .documents-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .category-panel {
-        flex-direction: column;
-        min-height: auto;
-    }
-    
-    .category-image {
-        height: 200px;
-        font-size: 4rem;
-    }
-
-    .certificats-scolaires {
-        grid-template-columns: repeat(2, minmax(160px, 1fr)); /* 2 colonnes sur tablette */
-        justify-content: center;
-    }
+.container {
+    padding: 1.5rem;
 }
 
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0;
+}
+
+h2, .category-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.subtitle {
+    font-size: 1.15rem;
+}
+
+/* Section scolaire */
+.scolaire-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.documents-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.certificats-scolaires {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.certificat-scolaire {
+    padding: 1.25rem;
+    max-height: 200px;
+}
+
+/* Section extra-scolaire */
+.category-panel {
+    flex-direction: column;
+    min-height: auto;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.category-image {
+    height: 320px;
+    font-size: 5rem;
+    max-height: none;
+    order: -1; /* Image en haut sur tablette */
+}
+
+.category-info {
+    padding: 1rem;
+}
+
+.certificates-carousel {
+    gap: 1.25rem;
+    padding: 1rem 0;
+}
+
+.certificat-card {
+    min-width: 320px;
+    padding: 1.25rem;
+}
+
+/* Navigation */
+.nav-tabs {
+    padding: 6px;
+}
+
+.nav-tab {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+}
+
+.carousel-nav-bar {
+    padding: 6px;
+    gap: 6px;
+}
+
+.nav-item {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+}
+
+.nav-icon {
+    font-size: 1rem;
+}
+}
+
+/* Mobile large (768px et moins) */
 @media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-    }
-    
-    .category-title {
-        font-size: 2rem;
-    }
-    
-    .certificat-card {
-        min-width: 280px;
-    }
-    
-    .nav-tab {
-        padding: 10px 16px;
-        font-size: 0.9rem;
-    }
+.container {
+    padding: 1rem;
+}
 
-    .bulletin-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-    }
+h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin: 0.5rem 0;
+}
 
-    .bulletin-actions {
-        align-self: flex-end;
-        width: 100%;
-        justify-content: space-between;
-    }
+.category-title, h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
 
-    .certificats-scolaires {
-        grid-template-columns: 1fr; /* 1 colonne sur mobile */
-        justify-content: stretch;
-    }
-    
-    .certificat-scolaire {
-        max-width: none;
-        aspect-ratio: 2; /* Plus rectangulaire sur mobile */
-    }
+.subtitle {
+    font-size: 1rem;
+    margin: 0 auto 1rem;
+}
+
+.category-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.badge {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+/* Navigation principale */
+.nav-container {
+    margin: 2rem 0;
+}
+
+.nav-tabs {
+    padding: 4px;
+    border-radius: 12px;
+}
+
+.nav-tab {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+}
+
+/* Navigation carousel - Layout vertical pour mobile */
+.carousel-navigation {
+    margin: -0.5rem 0 2rem 0;
+}
+
+.carousel-nav-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 8px;
+    gap: 4px;
+}
+
+.nav-item {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border-radius: 12px;
+    flex: 0 0 auto;
+    min-width: fit-content;
+}
+
+/* Section extra-scolaire mobile */
+.category-panel {
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.category-info {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.category-image {
+    height: 200px;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Carousel des certificats - Optimisé mobile */
+.certificates-carousel {
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    /* Scroll snap pour une meilleure UX mobile */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.certificat-card {
+    min-width: 260px;
+    max-width: 280px;
+    padding: 1rem;
+    scroll-snap-align: center;
+    /* Amélioration tactile */
+    touch-action: pan-x;
+}
+
+.certificat-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.certificat-info {
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.certificat-description {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.certificat-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+}
+
+/* Section scolaire mobile */
+.scolaire-layout {
+    gap: 1.5rem;
+}
+
+.bulletins-panel,
+.documents-panel {
+    padding: 1.25rem;
+}
+
+.panel-title, h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+}
+
+.bulletin-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.bulletin-actions {
+    align-self: flex-end;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.bulletin-title {
+    font-size: 0.95rem;
+}
+
+.bulletin-meta {
+    font-size: 0.8rem;
+}
+
+.bulletin-grade {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+}
+
+.bulletin-link {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+}
+
+.certificats-scolaires {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    gap: 1rem;
+}
+
+.certificat-scolaire {
+    max-width: none;
+    aspect-ratio: 2.2;
+    padding: 1rem;
+}
+
+.certificat-scolaire h4,
+.document-item h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.documents-annexes {
+    gap: 1rem;
+}
+
+.document-item {
+    padding: 1rem;
+}
+
+/* Footer */
+footer {
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+}
+}
+
+/* Mobile petit (480px et moins) */
+@media (max-width: 480px) {
+.container {
+    padding: 0.75rem;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
+}
+
+.category-title, h2 {
+    font-size: 1.5rem;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.nav-tab {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+.nav-item {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+}
+
+.nav-item .nav-icon {
+    font-size: 0.9rem;
+}
+
+.category-panel {
+    padding: 0.75rem;
+}
+
+.category-image {
+    height: 160px;
+    font-size: 2.5rem;
+}
+
+.certificat-card {
+    min-width: 240px;
+    max-width: 260px;
+    padding: 0.875rem;
+}
+
+.certificat-card h3 {
+    font-size: 0.95rem;
+}
+
+.bulletins-panel,
+.documents-panel {
+    padding: 1rem;
+}
+
+.panel-title, h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
 }
