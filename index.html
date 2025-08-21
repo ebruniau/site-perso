@@ -797,56 +797,238 @@
            RESPONSIVE
            ================================= */
 
+        /* Tablette (1024px et moins) */
         @media (max-width: 1024px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: clamp(2.5rem, 6vw, 4.5rem);
+                margin: 0.75rem 0;
+            }
+
+            h2, .category-title {
+                font-size: 2.2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .subtitle {
+                font-size: 1.15rem;
+            }
+
+            /* Section scolaire */
             .scolaire-layout {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .documents-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .category-panel {
-                flex-direction: column;
-                min-height: auto;
-            }
-            
-            .category-image {
-                height: 300px;
-                font-size: 4rem;
-                max-height: none;
+                gap: 2rem;
             }
 
             .certificats-scolaires {
-                grid-template-columns: repeat(2, minmax(160px, 1fr));
+                grid-template-columns: repeat(2, minmax(180px, 1fr));
                 justify-content: center;
+                gap: 1.5rem;
+            }
+
+            .certificat-scolaire {
+                padding: 1.25rem;
+                max-height: 200px;
+            }
+
+            /* Section extra-scolaire */
+            .category-panel {
+                flex-direction: column;
+                min-height: auto;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            
+            .category-image {
+                height: 320px;
+                font-size: 5rem;
+                max-height: none;
+                order: -1; /* Image en haut sur tablette */
+            }
+
+            .category-info {
+                padding: 1rem;
+            }
+
+            .certificates-carousel {
+                gap: 1.25rem;
+                padding: 1rem 0;
+            }
+
+            .certificat-card {
+                min-width: 320px;
+                padding: 1.25rem;
+            }
+
+            /* Navigation */
+            .nav-tabs {
+                padding: 6px;
+            }
+
+            .nav-tab {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+
+            .carousel-nav-bar {
+                padding: 6px;
+                gap: 6px;
+            }
+
+            .nav-item {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+
+            .nav-icon {
+                font-size: 1rem;
             }
         }
 
+        /* Mobile large (768px et moins) */
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
+
+            h1 {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+                margin: 0.5rem 0;
+            }
             
             .category-title, h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
             }
             
             .subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                margin: 0 auto 1rem;
             }
             
             .category-description {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
             }
-            
-            .certificat-card {
-                min-width: 280px;
+
+            .badge {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
             }
-            
+
+            /* Navigation principale */
+            .nav-container {
+                margin: 2rem 0;
+            }
+
+            .nav-tabs {
+                padding: 4px;
+                border-radius: 12px;
+            }
+
             .nav-tab {
                 padding: 10px 16px;
                 font-size: 0.9rem;
+                border-radius: 8px;
+            }
+
+            /* Navigation carousel - Layout vertical pour mobile */
+            .carousel-navigation {
+                margin: -0.5rem 0 2rem 0;
+            }
+
+            .carousel-nav-bar {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 8px;
+                gap: 4px;
+            }
+
+            .nav-item {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                border-radius: 12px;
+                flex: 0 0 auto;
+                min-width: fit-content;
+            }
+
+            /* Section extra-scolaire mobile */
+            .category-panel {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .category-info {
+                padding: 0.5rem;
+                text-align: center;
+            }
+            
+            .category-image {
+                height: 200px;
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Carousel des certificats - Optimisé mobile */
+            .certificates-carousel {
+                gap: 0.75rem;
+                padding: 0.75rem 0;
+                /* Scroll snap pour une meilleure UX mobile */
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .certificat-card {
+                min-width: 260px;
+                max-width: 280px;
+                padding: 1rem;
+                scroll-snap-align: center;
+                /* Amélioration tactile */
+                touch-action: pan-x;
+            }
+
+            .certificat-card h3 {
+                font-size: 1rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .certificat-info {
+                font-size: 0.8rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .certificat-description {
+                font-size: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .certificat-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            /* Section scolaire mobile */
+            .scolaire-layout {
+                gap: 1.5rem;
+            }
+
+            .bulletins-panel,
+            .documents-panel {
+                padding: 1.25rem;
+            }
+
+            .panel-title, h3 {
+                font-size: 1.3rem;
+                margin-bottom: 1.25rem;
             }
 
             .bulletin-content {
@@ -861,18 +1043,121 @@
                 justify-content: space-between;
             }
 
+            .bulletin-title {
+                font-size: 0.95rem;
+            }
+
+            .bulletin-meta {
+                font-size: 0.8rem;
+            }
+
+            .bulletin-grade {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .bulletin-link {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.6rem;
+            }
+
             .certificats-scolaires {
                 grid-template-columns: 1fr;
                 justify-content: stretch;
+                gap: 1rem;
             }
             
             .certificat-scolaire {
                 max-width: none;
-                aspect-ratio: 2;
+                aspect-ratio: 2.2;
+                padding: 1rem;
             }
-            
+
+            .certificat-scolaire h4,
+            .document-item h4 {
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .documents-annexes {
+                gap: 1rem;
+            }
+
+            .document-item {
+                padding: 1rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Mobile petit (480px et moins) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.75rem;
+            }
+
+            h1 {
+                font-size: clamp(1.8rem, 10vw, 2.8rem);
+            }
+
+            .category-title, h2 {
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            .nav-item {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+
+            .nav-item .nav-icon {
+                font-size: 0.9rem;
+            }
+
+            .category-panel {
+                padding: 0.75rem;
+            }
+
             .category-image {
-                height: 250px;
+                height: 160px;
+                font-size: 2.5rem;
+            }
+
+            .certificat-card {
+                min-width: 240px;
+                max-width: 260px;
+                padding: 0.875rem;
+            }
+
+            .certificat-card h3 {
+                font-size: 0.95rem;
+            }
+
+            .bulletins-panel,
+            .documents-panel {
+                padding: 1rem;
+            }
+
+            .panel-title, h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -1128,7 +1413,7 @@
     </div>
 
     <footer>
-        <p>© 2025 - Edgar BRUNIAU - Petit chimpanzée</p>
+        <p>© 2025 - Edgar BRUNIAU - Petit chimpanzé</p>
     </footer>
 
     <script>
@@ -1241,11 +1526,16 @@
             observer.observe(el);
         });
 
-        // Gestion tactile pour mobile
+        // Gestion tactile pour mobile - Désactivé pour éviter les conflits avec le scroll
+        // La navigation se fait uniquement via les boutons sur mobile/tablette
         let touchStartX = 0;
         let touchEndX = 0;
+        let isMobile = window.innerWidth <= 768;
 
         function handleSwipe() {
+            // Désactiver le swipe sur mobile et tablette pour éviter les conflits
+            if (isMobile) return;
+            
             if (touchEndX < touchStartX - 50) {
                 // Swipe left - next category
                 currentCategory = (currentCategory + 1) % totalCategories;
@@ -1258,13 +1548,22 @@
             }
         }
 
+        // Mettre à jour isMobile lors du redimensionnement
+        window.addEventListener('resize', () => {
+            isMobile = window.innerWidth <= 768;
+        });
+
         document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
+            if (!isMobile) {
+                touchStartX = e.changedTouches[0].screenX;
+            }
         });
 
         document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            if (!isMobile) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }
         });
 
         // Keyboard navigation
