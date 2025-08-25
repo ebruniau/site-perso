@@ -222,7 +222,7 @@ TYPOGRAPHIE - TITRES
 h1 {
 font-family: 'Marianne', -apple-system, BlinkMacSystemFont, sans-serif;
 font-size: clamp(3rem, 8vw, 6rem);
-font-weight: 30;
+font-weight: 10;
 color: #2c2c2c;
 margin: 1rem 0;
 letter-spacing: -0.05em;
