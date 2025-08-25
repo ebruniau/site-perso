@@ -169,6 +169,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Ajouter cette fonction à la fin du fichier script.js
 function initShowMoreSections() {
     // Configuration pour chaque section
